@@ -224,7 +224,7 @@ public class LaunchFragmentGZdoom extends Fragment{
         if (moreArgs != null)
             args = args + " " + moreArgs;
         String saveDir;
-        saveDir = " -savedir " + base + "/gzdoom_saves";
+        saveDir = " -savedir " + AppSettings.gzdoomBaseDir + "/save";
 
         String fluidSynthFile = "../soundfont/WeedsGM3.sf2";
 
