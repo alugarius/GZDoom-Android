@@ -264,7 +264,8 @@ public class LaunchFragmentGZdoom extends Fragment{
     {
         games.clear();
 
-        File files[] = new File(fullBaseDir).listFiles();
+        String iwadDir = AppSettings.gzdoomBaseDir + "/iwad/";
+        File files[] = new File(iwadDir).listFiles();
 
         if (files != null)
         {
@@ -285,7 +286,7 @@ public class LaunchFragmentGZdoom extends Fragment{
                             )
                     {
                         DoomWad game = new DoomWad(file, file);
-                        game.setArgs("-iwad " + file);
+                        game.setArgs("-iwad " + iwadDir + file);
                         game.setImage(DoomWad.getGameImage(file));
 
                         games.add(game);
