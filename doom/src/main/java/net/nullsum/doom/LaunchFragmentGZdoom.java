@@ -21,6 +21,7 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.net.Uri;
 
 import net.nullsum.doom.AppSettings;
 import net.nullsum.doom.Utils;
@@ -176,17 +177,7 @@ public class LaunchFragmentGZdoom extends Fragment{
 
     void startGame(final String base,boolean ignoreMusic,final String moreArgs)
     {
-        //Check gzdoom.pk3 wad exists
-        //File extrawad = new File(base + "/gzdoom.pk3"  );
-        //if (!extrawad.exists())
-        {
-            Utils.copyAsset(getActivity(),"gzdoom.pk3",base);
-            Utils.copyAsset(getActivity(),"gzdoom_dev.pk3",base);
-            //Utils.copyAsset(getActivity(),"lights_dt.pk3",base);
-            //Utils.copyAsset(getActivity(),"brightmaps_dt.pk3",base);
-        }
-
-        //File[] files = new File(basePath ).listFiles();
+//        Utils.copyAsset(getActivity(), "gzdoom_dev.pk3", base);
 
         String extraArgs = argsEditText.getText().toString().trim();
 
@@ -228,7 +219,11 @@ public class LaunchFragmentGZdoom extends Fragment{
 
         String fluidSynthFile = "../soundfont/WeedsGM3.sf2";
 
-        intent.putExtra("args",args + saveDir + " +set fluid_patchset " + fluidSynthFile + " +set midi_dmxgus 0 ");
+        Uri path = Uri.parse("file:///android_asset/raw/gzdoom_dev.pk3");
+
+        String newPath = path.toString();
+
+        intent.putExtra("args", args + saveDir + " +set fluid_patchset " + fluidSynthFile + " +set midi_dmxgus 0 -file " + path + " ");
 
         startActivity(intent);
     }
